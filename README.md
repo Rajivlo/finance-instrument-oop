@@ -177,4 +177,6 @@ See [`docs/design-b.md`](docs/design-b.md) for the class diagram.
   reader new to the codebase: everything an `EuropeanOption` does
   lives in one file.
 
-A fuller write-up is the topic of the accompanying report.
+A fuller write-up — research question, method, findings, mapping to SIT771
+unit learning outcomes, and reflection on the syntax / concept / process
+focus areas — is in [`docs/REPORT.md`](docs/REPORT.md).
