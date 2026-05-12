@@ -9,9 +9,9 @@ Instrument[] portfolio =
     new EuropeanOption("ACME-CALL-100", Market.SpotPrice, Market.OptionStrike, Market.OptionMaturityYears, OptionType.Call),
 };
 
-Console.WriteLine("Design A — pricing inside instrument (skeleton)");
+Console.WriteLine("Design A — pricing inside instrument");
 foreach (var i in portfolio)
 {
-    Console.WriteLine($"  {i.Name}: (not yet priced)");
+    Console.WriteLine($"  {i.Name,-20} {i.Price(),12:F4}");
 }
 

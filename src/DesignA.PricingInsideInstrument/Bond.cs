@@ -28,5 +28,20 @@ public sealed class Bond : Instrument
     }
 
     /// <inheritdoc />
-    public override decimal Price() => throw new NotImplementedException();
+    /// <remarks>
+    /// Prices the bond as <c>sum(coupon_t * exp(-r * t))</c> for each year <c>t</c>,
+    /// plus the discounted face value at maturity. Continuous compounding with a flat curve.
+    /// </remarks>
+    public override decimal Price()
+    {
+        decimal coupon = FaceValue * CouponRate;
+        decimal pv = 0m;
+        for (int t = 1; t <= MaturityYears; t++)
+        {
+            decimal df = (decimal)Math.Exp((double)(-DiscountRate) * t);
+            pv += coupon * df;
+        }
+        pv += FaceValue * (decimal)Math.Exp((double)(-DiscountRate) * MaturityYears);
+        return pv;
+    }
 }

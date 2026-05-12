@@ -17,5 +17,6 @@ public sealed class Stock : Instrument
     }
 
     /// <inheritdoc />
-    public override decimal Price() => throw new NotImplementedException();
+    /// <remarks>For Design A a stock simply prices at its market quote.</remarks>
+    public override decimal Price() => MarketPrice;
 }

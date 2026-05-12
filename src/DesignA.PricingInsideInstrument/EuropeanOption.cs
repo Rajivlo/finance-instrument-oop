@@ -43,5 +43,17 @@ public sealed class EuropeanOption : Instrument
     }
 
     /// <inheritdoc />
-    public override decimal Price() => throw new NotImplementedException();
+    /// <remarks>
+    /// Returns the undiscounted intrinsic value:
+    /// <list type="bullet">
+    /// <item><c>max(spot - strike, 0)</c> for a call</item>
+    /// <item><c>max(strike - spot, 0)</c> for a put</item>
+    /// </list>
+    /// </remarks>
+    public override decimal Price() => Type switch
+    {
+        OptionType.Call => Math.Max(Spot - Strike, 0m),
+        OptionType.Put => Math.Max(Strike - Spot, 0m),
+        _ => throw new InvalidOperationException($"Unknown option type: {Type}"),
+    };
 }
