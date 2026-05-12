@@ -29,3 +29,10 @@ foreach (var i in portfolio)
     Console.WriteLine($"  {i.Name,-20} {pricer.Price(i),12:F4}");
 }
 
+// Strategy-pattern bonus: swap in a different option pricer with zero changes to the instrument.
+var mcPricer = new MonteCarloOptionPricer();
+var optionForMc = (EuropeanOption)portfolio[2];
+Console.WriteLine();
+Console.WriteLine("Same option, swapped strategy:");
+Console.WriteLine($"  {optionForMc.Name,-20} {mcPricer.Price(optionForMc),12:F4}  (Monte Carlo, {MonteCarloOptionPricer.PathCount} paths)");
+

@@ -4,8 +4,7 @@ namespace DesignB.PricingViaStrategy;
 /// Strategy interface for pricing an <see cref="Instrument"/>.
 /// Implementations decide which concrete instrument types they support
 /// — see e.g. <see cref="StockPricer"/>, <see cref="BondPricer"/>,
-/// <see cref="EuropeanOptionPricer"/>, and <c>MonteCarloOptionPricer</c>
-/// (added in a later phase).
+/// <see cref="EuropeanOptionPricer"/>, <see cref="MonteCarloOptionPricer"/>.
 /// </summary>
 public interface IPricer
 {
