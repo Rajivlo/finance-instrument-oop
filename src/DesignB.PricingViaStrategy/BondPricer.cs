@@ -7,5 +7,22 @@ namespace DesignB.PricingViaStrategy;
 public sealed class BondPricer : IPricer
 {
     /// <inheritdoc />
-    public decimal Price(Instrument instrument) => throw new NotImplementedException();
+    public decimal Price(Instrument instrument)
+    {
+        if (instrument is not Bond b)
+        {
+            throw new ArgumentException(
+                $"{nameof(BondPricer)} only prices {nameof(Bond)}, got {instrument.GetType().Name}.",
+                nameof(instrument));
+        }
+        decimal coupon = b.FaceValue * b.CouponRate;
+        decimal pv = 0m;
+        for (int t = 1; t <= b.MaturityYears; t++)
+        {
+            decimal df = (decimal)Math.Exp((double)(-b.DiscountRate) * t);
+            pv += coupon * df;
+        }
+        pv += b.FaceValue * (decimal)Math.Exp((double)(-b.DiscountRate) * b.MaturityYears);
+        return pv;
+    }
 }

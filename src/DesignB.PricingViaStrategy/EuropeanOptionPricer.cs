@@ -10,5 +10,19 @@ namespace DesignB.PricingViaStrategy;
 public sealed class EuropeanOptionPricer : IPricer
 {
     /// <inheritdoc />
-    public decimal Price(Instrument instrument) => throw new NotImplementedException();
+    public decimal Price(Instrument instrument)
+    {
+        if (instrument is not EuropeanOption o)
+        {
+            throw new ArgumentException(
+                $"{nameof(EuropeanOptionPricer)} only prices {nameof(EuropeanOption)}, got {instrument.GetType().Name}.",
+                nameof(instrument));
+        }
+        return o.Type switch
+        {
+            OptionType.Call => Math.Max(o.Spot - o.Strike, 0m),
+            OptionType.Put => Math.Max(o.Strike - o.Spot, 0m),
+            _ => throw new InvalidOperationException($"Unknown option type: {o.Type}"),
+        };
+    }
 }

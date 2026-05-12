@@ -15,10 +15,17 @@ Instrument[] portfolio =
         Market.RiskFreeRate),
 };
 
-// Skeleton: pricers throw NotImplementedException until "Design B complete" commit.
-Console.WriteLine("Design B — pricing via strategy (skeleton)");
+var pricers = new Dictionary<Type, IPricer>
+{
+    [typeof(Stock)] = new StockPricer(),
+    [typeof(Bond)] = new BondPricer(),
+    [typeof(EuropeanOption)] = new EuropeanOptionPricer(),
+};
+
+Console.WriteLine("Design B — pricing via strategy");
 foreach (var i in portfolio)
 {
-    Console.WriteLine($"  {i.Name}: (not yet priced)");
+    var pricer = pricers[i.GetType()];
+    Console.WriteLine($"  {i.Name,-20} {pricer.Price(i),12:F4}");
 }
 
