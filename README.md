@@ -168,7 +168,7 @@ See [`docs/design-b.md`](docs/design-b.md) for the class diagram.
 
 ## Findings (short version)
 
-* For a fixed pricing rule both designs are interchangeable — the
+* For a fixed pricing rule both designs are interchangeable - the
   portfolio-equivalence tests pass with `Assert.Equal` on `decimal`.
 * The Strategy design (B) becomes strictly easier to extend the moment
   you want a *second* way to price the same instrument
