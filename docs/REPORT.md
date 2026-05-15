@@ -2,7 +2,7 @@
 
 **Title:** *Pricing Logic Inside the Object vs. Pricing as a Strategy — a Comparative Study of Two Object-Oriented Designs for a Toy Financial-Instrument Library*
 
-**Student:** Hariharan Poru
+**Student:** Rajiv Loganathan
 **Unit:** SIT771 Object-Oriented Development
 **Task:** 7.4 High Distinction — Something Awesome
 **Date:** 2026-05-12
